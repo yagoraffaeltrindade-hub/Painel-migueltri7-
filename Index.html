@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIGUELTRI7 RGB</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#050505;
+color:white;
+overflow:hidden;
+}
+
+/* RGB ANIMADO */
+@keyframes rgb {
+0%{box-shadow:0 0 25px red}
+25%{box-shadow:0 0 25px magenta}
+50%{box-shadow:0 0 25px cyan}
+75%{box-shadow:0 0 25px lime}
+100%{box-shadow:0 0 25px red}
+}
+
+.panel{
+width:330px;
+padding:20px;
+border-radius:18px;
+background:#0b0b0b;
+animation:rgb 4s infinite linear;
+}
+
+/* TITULO */
+.title{
+text-align:center;
+font-size:26px;
+font-weight:bold;
+margin-bottom:15px;
+background:linear-gradient(90deg,red,cyan,lime,magenta,red);
+-webkit-background-clip:text;
+color:transparent;
+animation:rgbText 6s linear infinite;
+}
+
+/* BOTÕES */
+.option{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px;
+margin:8px 0;
+background:#111;
+border-radius:12px;
+}
+
+.toggle{
+width:45px;
+height:22px;
+background:#333;
+border-radius:20px;
+position:relative;
+cursor:pointer;
+transition:.3s;
+}
+
+.toggle::before{
+content:'';
+position:absolute;
+width:18px;
+height:18px;
+background:white;
+border-radius:50%;
+top:2px;
+left:2px;
+transition:.3s;
+}
+
+.active{
+background:#00ff9c;
+}
+.active::before{
+left:24px;
+}
+
+/* BOTÃO INJETAR */
+.inject{
+margin-top:15px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+font-size:18px;
+font-weight:bold;
+background:linear-gradient(90deg,red,cyan,lime);
+color:black;
+cursor:pointer;
+}
+
+.status{
+text-align:center;
+margin-top:10px;
+color:#00ff9c;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+<div class="title">MIGUELTRI7 RGB</div>
+
+<div class="option">Aimbot<div class="toggle"></div></div>
+<div class="option">Aimlock<div class="toggle"></div></div>
+<div class="option">Regedit<div class="toggle"></div></div>
+<div class="option">Holograma<div class="toggle"></div></div>
+<div class="option">Forçar 120FPS<div class="toggle"></div></div>
+<div class="option">70% HS<div class="toggle"></div></div>
+
+<button class="inject">INJETAR</button>
+<div class="status" id="status"></div>
+</div>
+
+<script>
+// alternar switches
+document.querySelectorAll('.toggle').forEach(t=>{
+t.onclick=()=>t.classList.toggle('active');
+});
+
+// botão injetar visual
+document.querySelector('.inject').onclick=()=>{
+let s=document.getElementById('status');
+let n=5;
+s.innerText="Preparando...";
+let i=setInterval(()=>{
+s.innerText="Injetando em "+n+"s";
+n--;
+if(n<0){
+clearInterval(i);
+s.innerText="Ativado com sucesso ✔";
+}
+},1000);
+}
+</script>
+
+</body>
+</html>
